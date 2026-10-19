@@ -1,0 +1,17 @@
+{
+  "name": "context-labs",
+  "version": "0.1.0",
+  "description": "Context files and skills for building anything with AI: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
+  "author": {
+    "name": "Khalid",
+    "url": "https://x.com/khalerdameen"
+  },
+  "homepage": "https://context-labs.net",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "context",
+    "claude-design",
+    "plan-mode",
+    "design-review"
+  ]
+}
