@@ -1,7 +1,7 @@
-# Claude Code plan-mode build
+# Plan-mode build (Claude Code or any coding agent)
 
 ## Include
-- A pointer to CONTEXT.md (it already loads via CLAUDE.md; say "read it first" anyway)
+- A pointer to CONTEXT.md (it may already load via CLAUDE.md or AGENTS.md; say "read it first" anyway)
 - The goal in one sentence
 - Scope: what to build, and what is explicitly out of scope
 - The approved design: screenshot or export paths, and "approved — don't re-decide"

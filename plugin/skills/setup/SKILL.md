@@ -1,6 +1,6 @@
 ---
 name: setup
-description: Builds and maintains a project's CONTEXT.md, the single file every future Claude session, design pass and build prompt reads from. Scans an existing codebase (or researches the category for a new idea), asks the user short pop-up questions built from what it found, and writes CONTEXT.md with every line tagged by its source. Use when the user says "set up context", "set up the project context", "write my brief", "update my context", "my app looks generic", starts a new project, or before a redesign in Claude Design.
+description: Builds and maintains a project's CONTEXT.md, the single file every future AI session (Claude Code, Codex, Cursor, Gemini CLI, Copilot and other agents), design pass and build prompt reads from. Scans an existing codebase (or researches the category for a new idea), asks the user short pop-up questions built from what it found, and writes CONTEXT.md with every line tagged by its source. Use when the user says "set up context", "set up the project context", "write my brief", "update my context", "my app looks generic", starts a new project, or before a redesign in Claude Design.
 allowed-tools:
   - Read
   - Grep
@@ -91,7 +91,7 @@ Next: a few quick questions so I don't guess.
 
 Read [questions.md](references/questions.md). Rules that matter most:
 
-- Use the AskUserQuestion tool. At most 4 questions per call, 2–4 options
+- Use your question tool if you have one (in Claude: AskUserQuestion). At most 4 questions per call, 2–4 options
   each, options built from what you found (real hex values, real file
   names, real counts).
 - Never ask what the code or docs already answer. Ask about tensions,
@@ -127,10 +127,18 @@ Follow [template.md](references/template.md) exactly. Non-negotiable:
 
 ### Step 6: Wire it in (ask first)
 
-Ask with the question tool: "Load CONTEXT.md automatically in every Claude
-Code session here?" Options: "Yes, add it to CLAUDE.md" / "Not yet".
-On yes, add one line `@CONTEXT.md` to `CLAUDE.md` (create CLAUDE.md if it
-doesn't exist). Keep everything already in CLAUDE.md.
+Ask: "Load CONTEXT.md automatically in every session here?" Options:
+"Yes" / "Not yet". On yes, point every agent instruction file this project
+uses at it, keeping everything already in those files:
+
+- `CLAUDE.md` (Claude Code): add one line `@CONTEXT.md`.
+- `AGENTS.md` (Codex, Cursor, Copilot, Gemini CLI, OpenCode and most other
+  agents): add one line `Read CONTEXT.md before any design or build work.`
+- `GEMINI.md`, `.github/copilot-instructions.md` or a `.cursor/rules/`
+  file: only if one already exists, add the same plain line.
+
+If none of these exist, create `AGENTS.md` with that line, and also create
+`CLAUDE.md` with `@CONTEXT.md` when you are running in Claude Code.
 
 ### Step 7: Final report
 
@@ -182,6 +190,6 @@ Same checklist, but replace the scan with research:
 | Paste the whole PRD or plan into CONTEXT.md | Summarise the decisions and link the file |
 | Ask what the code already answers | Ask about tensions, intent and taste |
 | Generic options ("Modern", "Clean") | Options built from real findings |
-| Edit CLAUDE.md without asking | Step 6 question first |
+| Edit CLAUDE.md or AGENTS.md without asking | Step 6 question first |
 | Overwrite CONTEXT.md silently | Show the change, ask, then edit |
 | Secrets or `.env` values in CONTEXT.md | Note that a key exists, never its value |

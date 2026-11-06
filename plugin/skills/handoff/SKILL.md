@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Writes a ready-to-paste prompt for the next tool from the project's CONTEXT.md, carrying only what that tool needs — a Claude Design pass, a Claude Code plan-mode build prompt, or a Claude artifact. Use when the user says "send this to claude design", "next design pass", "write the plan mode prompt", "hand this off to claude code", "prompt for an artifact", or when an approved design needs building.
+description: Writes a ready-to-paste prompt for the next tool from the project's CONTEXT.md, carrying only what that tool needs — a Claude Design pass, a plan-mode build prompt for Claude Code or any coding agent (Codex, Cursor, Gemini CLI, Copilot), or a Claude artifact. Use when the user says "send this to claude design", "next design pass", "write the plan mode prompt", "hand this off to claude code", "prompt for an artifact", or when an approved design needs building.
 allowed-tools:
   - Read
   - Grep
@@ -13,7 +13,7 @@ allowed-tools:
 
 Every tool in the loop needs a different slice of the same project.
 Claude Design needs the direction, tokens and real content, never the
-bugs or the stack. Claude Code needs the approved design, the scope and
+bugs or the stack. A coding agent (Claude Code, Codex, Cursor and others) needs the approved design, the scope and
 the hard rules, never another round of exploration. Dumping everything
 into every tool is the most common reason output drifts. This skill
 writes one prompt shaped for one tool, from CONTEXT.md.
@@ -23,7 +23,7 @@ writes one prompt shaped for one tool, from CONTEXT.md.
 | File | Read before |
 |---|---|
 | [design.md](references/design.md) | a Claude Design pass |
-| [plan-mode.md](references/plan-mode.md) | a Claude Code build |
+| [plan-mode.md](references/plan-mode.md) | a build in Claude Code or any coding agent |
 | [artifact.md](references/artifact.md) | a Claude artifact |
 
 ## Step 1: Read the context
@@ -38,8 +38,10 @@ design handoff.
 
 ## Step 2: Target and scope
 
-- **Target** from the user's words: Claude Design, Claude Code (plan
-  mode), or artifact. If unclear, ask with the question tool.
+- **Target** from the user's words: Claude Design (or another AI design
+  tool), a coding agent in plan mode (Claude Code, Codex, Cursor, Gemini
+  CLI, Copilot), or artifact. If unclear, ask with your question tool, or
+  as a short numbered list if you don't have one.
 - **Scope:** which screens, flow or feature. If the user didn't say, ask
   with options built from CONTEXT.md (screens listed under Product or
   Build, open questions, known issues). One handoff = one coherent chunk:
@@ -70,7 +72,8 @@ Follow the reference for the target exactly. Rules for every target:
 
 1. Show the prompt in one fenced code block, ready to copy.
 2. Under it, two or three lines on how to use it: where to paste it, and
-   for Claude Code, "switch to plan mode first (Shift+Tab)".
+   for a coding agent, "switch to plan mode first" (in Claude Code:
+   Shift+Tab; in other agents, their plan or ask mode if they have one).
 3. Save a copy to `.context-labs/handoffs/<YYYY-MM-DD>-<target>-<slug>.md`
    so the project keeps a history of what was sent where.
 4. Say what happens next: for design, "send me screenshots of the result

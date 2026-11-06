@@ -19,7 +19,7 @@ Then re-check:
 - <the failed checks, restated as checks>
 ```
 
-## Template — Claude Code
+## Template — coding agent (Claude Code, Codex, Cursor…)
 
 ```
 Fix these in <files / screens>. Don't change anything else.

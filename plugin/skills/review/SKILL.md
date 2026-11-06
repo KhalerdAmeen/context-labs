@@ -83,7 +83,7 @@ Can't tell: <checks marked ?>
 
 ## Step 5: Ask
 
-With the question tool, one or two rounds, only where rules can't decide:
+With your question tool (or a short numbered list if you don't have one), one or two rounds, only where rules can't decide:
 
 - "Is this the direction?" (approve / approve with fixes / try again),
   always asked after a first design pass.
@@ -96,14 +96,14 @@ With the question tool, one or two rounds, only where rules can't decide:
 ## Step 6: Write the fix prompt
 
 Follow [fix-prompt.md](references/fix-prompt.md). Target the tool that
-made the result (Claude Design for a design pass, Claude Code for a
+made the result (the design tool for a design pass, the coding agent for a
 build). The prompt changes only what failed, lists what must stay exactly
 as it is, and repeats the checks. Never slip new ideas into a fix prompt
 unless the user asked for them. At most 8 fixes per round, defects first.
 
 ## Step 7: Save decisions (ask first)
 
-If the user approved something, ask with the question tool whether to
+If the user approved something, ask (question tool or numbered list) whether to
 record it in CONTEXT.md, then edit in place:
 
 - An approved palette or type scale → Tokens / Type (fills any

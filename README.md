@@ -45,6 +45,20 @@ Then run `/context-labs:setup`, `/context-labs:handoff` or `/context-labs:review
 
 **Without the plugin system:** download the three zips from [Releases](https://github.com/KhalerdAmeen/context-labs/releases), unzip them into `~/.claude/skills/` (all projects) or `.claude/skills/` (one project).
 
+### Codex, Cursor, Gemini CLI, Copilot and other agents
+
+The skills follow the open Agent Skills standard (a folder with a `SKILL.md`), so any agent that reads skills can use them. The quickest install:
+
+```
+npx skills add KhalerdAmeen/context-labs
+```
+
+It finds the agents on your machine and installs `context-labs-setup`, `context-labs-handoff` and `context-labs-review` into each. Add `-g` to install for all projects.
+
+**Manual:** copy the three folders from [`skills/`](skills/) into your agent's skills folder: `.agents/skills/` in a project works for Codex, Cursor, Gemini CLI, Copilot, OpenCode and most others.
+
+**What changes outside Claude:** setup asks its questions as a short numbered list in chat instead of pop-ups, and it points your agent at CONTEXT.md through `AGENTS.md` instead of `CLAUDE.md`. Everything else is the same.
+
 ### Claude app (claude.ai / desktop)
 
 1. Download `context-labs-setup.zip`, `context-labs-handoff.zip`, `context-labs-review.zip` from [Releases](https://github.com/KhalerdAmeen/context-labs/releases).
@@ -57,7 +71,7 @@ Skills don't sync between the Claude app and Claude Code; install in each place 
 
 ## Use it
 
-**1. Set up** (in your project, in Claude Code):
+**1. Set up** (in your project, in Claude Code or any agent):
 
 > set up context
 
@@ -124,7 +138,8 @@ plugin/
     setup/    SKILL.md + references/ (where-to-look, questions, template, mobile-rules)
     handoff/  SKILL.md + references/ (design, plan-mode, artifact)
     review/   SKILL.md + references/ (tells, fix-prompt)
-build.sh                          ← makes the three zips for the Claude app into dist/
+skills/                           ← generated copies for npx skills / other agents (don't edit by hand)
+build.sh                          ← regenerates skills/ and the Claude app zips in dist/ from plugin/skills
 ```
 
 ## Contribute

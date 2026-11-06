@@ -5,15 +5,15 @@
     "url": "https://x.com/khalerdameen"
   },
   "metadata": {
-    "description": "Context files and skills for building anything with AI: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
-    "version": "0.1.0"
+    "description": "Context files and skills for building anything with AI, in Claude Code, Codex, Cursor, Gemini CLI, Copilot and other agents: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "context-labs",
       "source": "./plugin",
-      "description": "Context files and skills for building anything with AI: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
-      "version": "0.1.0"
+      "description": "Context files and skills for building anything with AI, in Claude Code, Codex, Cursor, Gemini CLI, Copilot and other agents: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
+      "version": "0.2.0"
     }
   ]
 }
