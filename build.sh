@@ -1,21 +1,16 @@
 #!/bin/bash
-# Source of truth: plugin/skills/<name>/ (the Claude Code plugin).
-# This script generates, from it:
-#   skills/context-labs-<name>/   for `npx skills add` and any agent that reads SKILL.md folders
-#   dist/context-labs-<name>.zip  for the Claude app (Settings → Features → Skills → upload)
-# Run it after every change to plugin/skills, then commit skills/.
+# Source of truth: plugin/skills/context-labs-<name>/
+# The same folders serve the Claude Code plugin, `npx skills add` and manual installs.
+# This script only builds the Claude app zips into dist/ (Settings → Features → Skills → upload).
 set -e
 cd "$(dirname "$0")"
 TMP="$(mktemp -d)"
-mkdir -p dist skills
-for s in setup handoff review; do
-  d="skills/context-labs-$s"
-  rm -rf "$d"; mkdir -p "$d"
-  cp -R "plugin/skills/$s/." "$d/"
-  find "$d" -name .DS_Store -exec rm -f {} +
-  sed "2s/^name: $s\$/name: context-labs-$s/" "plugin/skills/$s/SKILL.md" > "$d/SKILL.md"
-  (cd skills && rm -f "$TMP/context-labs-$s.zip" && zip -qr "$TMP/context-labs-$s.zip" "context-labs-$s")
-  cp -f "$TMP/context-labs-$s.zip" "dist/"
+mkdir -p dist
+for s in context-labs-setup context-labs-handoff context-labs-review; do
+  cp -R "plugin/skills/$s" "$TMP/$s"
+  find "$TMP/$s" -name .DS_Store -exec rm -f {} +
+  (cd "$TMP" && zip -qr "$s.zip" "$s")
+  cp -f "$TMP/$s.zip" dist/
 done
 rm -rf "$TMP"
-ls -1 skills dist
+ls -1 dist

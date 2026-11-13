@@ -1,6 +1,6 @@
 {
   "name": "context-labs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Context files and skills for building anything with AI, in Claude Code, Codex, Cursor, Gemini CLI, Copilot and other agents: set up a sourced CONTEXT.md, hand it off to Claude Design or Claude Code plan mode, and review the result against it.",
   "author": {
     "name": "Khalid",

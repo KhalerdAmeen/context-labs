@@ -41,7 +41,7 @@ Inside Claude Code:
 /plugin install context-labs@context-labs
 ```
 
-Then run `/context-labs:setup`, `/context-labs:handoff` or `/context-labs:review`, or just say the phrases above.
+Then run `/context-labs:context-labs-setup` (or `-handoff`, `-review`), or just say the phrases above, like "set up context".
 
 **Without the plugin system:** download the three zips from [Releases](https://github.com/KhalerdAmeen/context-labs/releases), unzip them into `~/.claude/skills/` (all projects) or `.claude/skills/` (one project).
 
@@ -55,7 +55,7 @@ npx skills add KhalerdAmeen/context-labs
 
 It finds the agents on your machine and installs `context-labs-setup`, `context-labs-handoff` and `context-labs-review` into each. Add `-g` to install for all projects.
 
-**Manual:** copy the three folders from [`skills/`](skills/) into your agent's skills folder: `.agents/skills/` in a project works for Codex, Cursor, Gemini CLI, Copilot, OpenCode and most others.
+**Manual:** copy the three folders from [`plugin/skills/`](plugin/skills/) into your agent's skills folder: `.agents/skills/` in a project works for Codex, Cursor, Gemini CLI, Copilot, OpenCode and most others.
 
 **What changes outside Claude:** setup asks its questions as a short numbered list in chat instead of pop-ups, and it points your agent at CONTEXT.md through `AGENTS.md` instead of `CLAUDE.md`. Everything else is the same.
 
@@ -135,11 +135,10 @@ Never put API keys, `.env` values or passwords in `CONTEXT.md`; the skill refuse
 plugin/
   .claude-plugin/plugin.json
   skills/
-    setup/    SKILL.md + references/ (where-to-look, questions, template, mobile-rules)
-    handoff/  SKILL.md + references/ (design, plan-mode, artifact)
-    review/   SKILL.md + references/ (tells, fix-prompt)
-skills/                           ← generated copies for npx skills / other agents (don't edit by hand)
-build.sh                          ← regenerates skills/ and the Claude app zips in dist/ from plugin/skills
+    context-labs-setup/    SKILL.md + references/ (where-to-look, questions, template, mobile-rules)
+    context-labs-handoff/  SKILL.md + references/ (design, plan-mode, artifact)
+    context-labs-review/   SKILL.md + references/ (tells, fix-prompt)
+build.sh                          ← builds the three Claude app zips into dist/
 ```
 
 ## Contribute
